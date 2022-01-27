@@ -1,0 +1,26 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3>Welcome {{business_name}}</h3>
+    <mat-divider></mat-divider>
+    <br>
+    <div class="businessInfo">
+        <span>Business Registration Number: {{business_registration_number}}</span><br>
+        <span>Business Status: {{business_status}}</span><br>
+        <span>Constomer Id: {{customer_id}}</span>
+    </div>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <h3>My Addresses</h3>
+    <div class="spacer"></div>
+    <a href="/add-address" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon>add</mat-icon>
+    </a>
+    <br><br>
+    <mat-grid-list cols="3" rowHeight="5:2">
+        <mat-grid-tile *ngFor="let address of allAddress">
+            <app-address [address]="address" (click)="deleteAddress(address.id)"></app-address>
+        </mat-grid-tile>
+      </mat-grid-list>
+</div>

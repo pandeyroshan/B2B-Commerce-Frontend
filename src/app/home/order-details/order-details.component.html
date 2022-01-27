@@ -1,0 +1,42 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3>Order Details - {{orderId}}</h3>
+    <mat-divider></mat-divider>
+
+    <div class="row">
+
+        <div class="column1">
+            <br><br>
+            <img src="../../assets/purchase-details.svg" style="width: 100%;">
+        </div>
+
+        <div class="column2">
+            <div>
+                <span>Total Cost: {{order_details.total_cost}} Rs.</span><br>
+                <span>Date: {{order_details.timestamp}}</span>
+            </div>
+            <br>
+            <table id="purchaseDetails">
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Cost</th>
+                </tr>
+                <tr *ngFor="let purchase_detail of order_details.purchase_details">
+                    <td>{{purchase_detail.product.name}}</td>
+                    <td>{{purchase_detail.product.price}} Rs.</td>
+                    <td>x {{purchase_detail.quantity}}</td>
+                    <td>{{purchase_detail.cost}} Rs.</td>
+                </tr>
+            </table>
+            <br>
+            <div style="text-align: right;">
+                <a href="/my-orders" mat-fab color="primary">
+                    <mat-icon>chevron_left</mat-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

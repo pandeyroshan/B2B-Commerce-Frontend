@@ -1,0 +1,60 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3>My Cart</h3>
+    <table id="cartTable">
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Manage Quantity</th>
+            <th>Total Cost</th>
+            <th>Delete</th>
+        </tr>
+        <tr *ngFor="let cartItem of cartItems">
+            <td>{{cartItem.name}}</td>
+
+            <td>{{cartItem.price}} Rs.</td>
+
+            <td>
+                <span>
+                    <ng-template [ngIf]="cartItem.quantity == 1">
+                        <button disabled mat-icon-button color="primary" (click)="decreaseQuantity(cartItem.id)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                    </ng-template>
+                    
+                    <ng-template [ngIf]="cartItem.quantity != 1">
+                        <button mat-icon-button color="primary" (click)="decreaseQuantity(cartItem.id)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                    </ng-template>
+                </span>
+                {{cartItem.quantity}}
+                <span>
+                    <button mat-icon-button color="primary" (click)="increaseQuantity(cartItem.id)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </span>
+            </td>
+
+            <td>{{cartItem.total_price}} Rs.</td>
+            
+            <td style="text-align: center;">
+                <button mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)="deleteFromCart(cartItem.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align: right; font-weight: bold;">Grand Total: {{totalCartValue}} INR</td>
+            <td colspan="1">
+                <a href="/checkout" mat-flat-button color="primary">
+                    Checkout
+                    <mat-icon>
+                        shopping_cart_checkout
+                    </mat-icon>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

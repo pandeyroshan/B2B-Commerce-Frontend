@@ -1,0 +1,34 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3>Add a new address</h3>
+    <div class="formDiv">
+        <form [formGroup]="addressForm" #ngForm="ngForm">
+            <label for="contactPersonName">Contact Person Name</label>
+            <input type="text" formControlName="contactPersonName" name="contactPersonName" placeholder="Contact person name" required>
+
+            <label for="contactPersonPhoneNumber">Contact Person phone number</label>
+            <input type="text" formControlName="contactPersonContactNumber" name="contactPersonContactNumber" placeholder="Contact person phone number" required>
+
+            <label for="addressLine1">Address Line 1</label>
+            <input type="text" formControlName="addressLine1" name="addressLine1" placeholder="House No" required>
+            
+            <label for="addressLine2">Address Line 2</label>
+            <input type="text" formControlName="addressLine2" name="addressLine2" placeholder="Street">
+            
+            <label for="addressLine3">Address Line 3</label>
+            <input type="text" formControlName="addressLine3" name="addressLine3" placeholder="Nagar/Town/Mohalla">
+            
+            <label for="city">City</label>
+            <input type="text" formControlName="city" name="city" placeholder="Ex - Indore/Rewa">
+
+            <label for="country">Country</label>
+            <input type="text" formControlName="country" name="country" placeholder="Ex - India/Japan">
+            
+            <label for="pincode">PINCODE</label>
+            <input type="text" formControlName="pincode" name="pincode" placeholder="Ex - 486450">
+          
+            <button type="submit" value="Save Address" (click)="saveForm()">Save Address</button>
+        </form>
+    </div>
+</div>

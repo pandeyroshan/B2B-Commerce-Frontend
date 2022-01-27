@@ -1,0 +1,18 @@
+mat-card {
+    padding: 30px;
+    background-color: #F6F6F6;
+}
+
+.mat-card-content, p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-icon:hover {
+    color: #673AB7;
+}
+
+.spacer{
+    flex: 1 1 auto;
+}

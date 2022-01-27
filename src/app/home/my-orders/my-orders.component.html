@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="container">
+    <br>
+    <h3>My Orders</h3>
+    <mat-divider></mat-divider>
+    <br>
+    <div class="row">
+
+        <div class="column1" style="">
+            <br>
+            <img src="../../assets/orders.svg" style="width: 100%;">
+        </div>
+
+        <div class="column2">
+            <table id="myOrdersTable">
+                <tr>
+                    <th>Order Id</th>
+                    <th>View Order Details</th>
+                    <th>Timestamp</th>
+                    <th>Status</th>
+                    <th>Cancel Order</th>
+                </tr>
+                <tr *ngFor="let order of myOrders">
+                    <td>Order {{order.id}}</td>
+                    <td>
+                        <a href="/view-order?order-id={{order.id}}" mat-icon-button color="primary">
+                            <mat-icon>visibility</mat-icon>
+                        </a>
+                    </td>
+                    <td>{{order.timestamp}}</td>
+                    <td>
+                        <ng-template [ngIf]="order.status == 'PLACED'">
+                            Placed
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.status == 'IN_TRANSIT'">
+                            On the way
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.status == 'CANCELLED'">
+                            Cancelled
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.status == 'DELIVERED'">
+                            Delivered
+                        </ng-template>
+                    </td>
+                    <td> 
+                        <ng-template [ngIf]="order.status == 'PLACED'">
+                            <button (click)="cancelOrder(order.id, order.status)" mat-icon-button color="warn">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.status == 'IN_TRANSIT'">
+                            <button (click)="cancelOrder(order.id, order.status)" mat-icon-button color="warn">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.status == 'CANCELLED'">
+                            <button disabled mat-icon-button color="warn">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.status == 'DELIVERED'">
+                            <button disabled mat-icon-button color="warn">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </ng-template>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>

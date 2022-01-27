@@ -1,0 +1,12 @@
+<mat-card>
+    <img mat-card-image src="{{product.image_link}}">
+
+    <p>
+        {{product.name}} for {{product.price}} Rs.
+    </p>
+    <mat-card-content>
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="addToCart()">
+            <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>

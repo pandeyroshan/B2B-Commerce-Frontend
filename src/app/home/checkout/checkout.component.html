@@ -1,0 +1,26 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3>Checkout Page - Pick a address to confirm your order</h3>
+    <mat-divider></mat-divider>
+    <br>
+
+    <mat-grid-list cols="3" rowHeight="5:2">
+        <mat-grid-tile *ngFor="let address of allAddress" (click)="selectAddressForDelivery(address.id)">
+            <app-address [address]="address"></app-address>
+        </mat-grid-tile>
+    </mat-grid-list> 
+    <br>
+    <ng-template [ngIf]="selectedAddressId == -1">
+        <h4>Click on a address-tile to select a delivery address</h4>
+    </ng-template>
+    <ng-template [ngIf]="selectedAddressId != -1">
+        <h4>Your package will be delivered to below address</h4>
+        <app-address [address]="deliveryAddress"></app-address>
+        <div style="text-align: right;">
+            <a (click)="confirmOrder()" href="/order-confirmed" mat-fab color="primary">
+                <mat-icon>chevron_right</mat-icon>
+            </a>
+        </div>
+    </ng-template>
+</div>
