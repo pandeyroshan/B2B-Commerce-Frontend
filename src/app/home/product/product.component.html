@@ -1,12 +1,26 @@
 <mat-card>
-    <img mat-card-image src="{{product.image_link}}">
+    <img mat-card-image src="{{product.imageLink}}">
 
     <p>
-        {{product.name}} for {{product.price}} Rs.
+        <ng-template [ngIf]="product.active">
+            {{product.name}} for {{product.price}} Rs.
+        </ng-template>
+        
+        <ng-template [ngIf]="!product.active">
+            <del>{{product.name}} for {{product.price}} Rs.</del>
+        </ng-template>
     </p>
     <mat-card-content>
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="addToCart()">
-            <mat-icon>add_shopping_cart</mat-icon>
-        </button>
+        <ng-template [ngIf]="product.active">
+            <button mat-icon-button (click)="addToCart(product.id)">
+                <mat-icon id="addToCartIcon{{product.id}}" class="activeButton" >add_shopping_cart</mat-icon>
+            </button>
+        </ng-template>
+        
+        <ng-template [ngIf]="!product.active">
+            <button disabled mat-icon-button>
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+        </ng-template>
     </mat-card-content>
 </mat-card>

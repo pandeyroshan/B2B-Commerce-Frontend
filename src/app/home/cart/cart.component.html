@@ -10,26 +10,26 @@
             <th>Total Cost</th>
             <th>Delete</th>
         </tr>
-        <tr *ngFor="let cartItem of cartItems">
-            <td>{{cartItem.name}}</td>
+        <tr *ngFor="let cartItem of allCartItems">
+            <td>{{cartItem.product.name}}</td>
 
-            <td>{{cartItem.price}} Rs.</td>
+            <td>{{cartItem.product.price}} Rs.</td>
 
             <td>
                 <span>
-                    <ng-template [ngIf]="cartItem.quantity == 1">
+                    <ng-template [ngIf]="cartItem.totalQuantity == 1">
                         <button disabled mat-icon-button color="primary" (click)="decreaseQuantity(cartItem.id)">
                             <mat-icon>remove</mat-icon>
                         </button>
                     </ng-template>
                     
-                    <ng-template [ngIf]="cartItem.quantity != 1">
+                    <ng-template [ngIf]="cartItem.totalQuantity != 1">
                         <button mat-icon-button color="primary" (click)="decreaseQuantity(cartItem.id)">
                             <mat-icon>remove</mat-icon>
                         </button>
                     </ng-template>
                 </span>
-                {{cartItem.quantity}}
+                {{cartItem.totalQuantity}}
                 <span>
                     <button mat-icon-button color="primary" (click)="increaseQuantity(cartItem.id)">
                         <mat-icon>add</mat-icon>
@@ -37,7 +37,7 @@
                 </span>
             </td>
 
-            <td>{{cartItem.total_price}} Rs.</td>
+            <td>{{cartItem.totalQuantity * cartItem.product.price}} Rs.</td>
             
             <td style="text-align: center;">
                 <button mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)="deleteFromCart(cartItem.id)">

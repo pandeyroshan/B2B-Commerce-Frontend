@@ -9,7 +9,7 @@ mat-card {
     align-items: center;
 }
 
-mat-icon:hover {
+mat-icon.activeButton:hover {
     color: #673AB7;
 }
 

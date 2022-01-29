@@ -22,8 +22,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
-import { MatStepperModule } from '@angular/material/stepper';
-import { OrderDetailsComponent } from './order-details/order-details.component'
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [HomepageComponent, CartComponent, CheckoutComponent, ProductComponent, ProfileComponent, MyOrdersComponent, HeaderComponent, MyBusinessComponent, AddressComponent, AddAddressComponent, OrderConfirmedComponent, OrderDetailsComponent],
@@ -40,7 +40,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component'
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   exports: [
     HomepageComponent,
