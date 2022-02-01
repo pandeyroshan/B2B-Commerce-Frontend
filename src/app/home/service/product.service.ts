@@ -8,7 +8,7 @@ import { product } from '../model/product';
 })
 export class ProductService {
 
-  private baseUrl: string = "http://localhost:8080/all-products";
+  private baseUrl: string = "http://localhost:8080/all-products/"+localStorage.getItem("userId");
 
   constructor(private http: HttpClient) { }
 

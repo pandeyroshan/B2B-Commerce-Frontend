@@ -4,6 +4,8 @@ import { product } from '../model/product';
 import { ProductService } from '../service/product.service';
 import { BusinessService } from '../service/business.service';
 
+import { CartService } from '../service/cart.service';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -13,14 +15,18 @@ export class HomepageComponent implements OnInit {
 
   totalItemsInCart: number;
 
-  realProducts: product[];
+  realProducts: any[];
+
   constructor(
     private _productService: ProductService,
-    private _businessService: BusinessService
   ) { }
 
   ngOnInit(): void {
-    this._productService.getAllProduct().subscribe(data => this.realProducts = data);
+    this._productService.getAllProduct().subscribe(data => {
+      this.realProducts = data;
+      console.log(data);
+      }
+    );
   }
 
 }

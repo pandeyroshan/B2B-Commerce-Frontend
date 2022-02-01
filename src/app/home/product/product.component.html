@@ -17,9 +17,17 @@
     </p>
     <mat-card-content>
         <ng-template [ngIf]="product.active">
-            <button mat-icon-button (click)="addToCart(product.id)">
-                <mat-icon id="addToCartIcon{{product.id}}" class="activeButton" >add_shopping_cart</mat-icon>
-            </button>
+            <ng-template [ngIf]="product.isAddedToCart">
+                <button mat-icon-button>
+                    <mat-icon id="addToCartIcon{{product.id}}" class="activeButton" >check_circle</mat-icon>
+                </button>
+            </ng-template>
+
+            <ng-template [ngIf]="!product.isAddedToCart">
+                <button mat-icon-button (click)="addToCart(product.id)">
+                    <mat-icon id="addToCartIcon{{product.id}}" class="activeButton" >add_shopping_cart</mat-icon>
+                </button>
+            </ng-template>
         </ng-template>
         
         <ng-template [ngIf]="!product.active">

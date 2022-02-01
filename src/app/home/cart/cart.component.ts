@@ -11,6 +11,8 @@ import {CartService} from '../service/cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+
+  currentValue: number;
   
   allCartItems: any[];
   
@@ -23,6 +25,10 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(localStorage);
+    
+    this._cartService.getTotalNumberOfItemsInCart().subscribe(data => this.currentValue = data["totalNumberOfItemsInCart"])
+    this._cartService.currentValue.subscribe(data => this.currentValue = data);
+
     this._cartService.getAllProduct().subscribe(data => {
       this.allCartItems = data;
 
@@ -38,6 +44,7 @@ export class CartComponent implements OnInit {
     let itemName = this.allCartItems[cartItemIndex].product.name;
     
     this._cartService.deleteFromCart(this.allCartItems[cartItemIndex].product.id);
+    this._cartService.changeCurrentValue(this.currentValue-1);
 
     this.allCartItems = this.allCartItems.filter(cartItem => cartItem.id != id);
     this._snackBar.open(itemName+" removed from cart ", "OK");
