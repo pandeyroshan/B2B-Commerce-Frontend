@@ -6,8 +6,8 @@
     <div class="spacer"></div>
 
     <ng-template [ngIf]="isLoggedIn">
-        <a href="/cart"mat-icon-button>
-            <mat-icon>shopping_cart</mat-icon>
+        <a href="/cart"mat-icon-button style="margin-right: 20px;">
+            <mat-icon matBadge="{{currentValue}}" matBadgeOverlap="false">shopping_cart</mat-icon>
         </a>
         <a href="/my-orders" mat-icon-button style="margin-right: 30px;">
             <mat-icon>shopping_bag</mat-icon>

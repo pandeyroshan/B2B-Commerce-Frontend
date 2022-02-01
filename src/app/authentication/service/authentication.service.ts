@@ -21,6 +21,19 @@ export class AuthenticationService {
     );
   }
 
+  register(businessRegistrationNumber: string,username: string,email: string ,password: string) {
+    this.http.post<any>(
+      "http://localhost:8080/register-user", 
+      {
+        "businessRegistrationNumber": businessRegistrationNumber,
+        "email": email,
+        "password": password,
+        "username": username
+      }
+    ).subscribe(data => console.log(data));
+    
+  }
+
   getRole(): Observable<any> {
     return this.http.post<any>(
       "http://localhost:8080/get-role", {
@@ -29,6 +42,12 @@ export class AuthenticationService {
     );
   }
 
-  getBusinessDetails(token: string) {
+  getBusinessDetails(): Observable<any> {
+    return this.http.post<any>(
+      "http://localhost:8080/get-detail-from-token",
+      {
+        "token" : localStorage.getItem("jwttoken")
+      }
+    );
   }
 }

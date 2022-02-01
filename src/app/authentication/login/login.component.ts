@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit {
     password: ['']
   })
 
+  role: any;
+
   jwtToken: any;
+  businessDetails: any;
 
   ngOnInit(): void {
   }
@@ -39,16 +42,28 @@ export class LoginComponent implements OnInit {
             data => {
               this.jwtToken = data;
 
-              console.log(this.jwtToken["jwttoken"]);
               localStorage.setItem("jwttoken", this.jwtToken["jwttoken"]);
 
               this._snackBar.open("Successfully logged in as "+this.loginForm.value["username"], "OK");
 
               this._authenticationService.getRole().subscribe(
                 data => {
-                  console.log(data["name"]);
+                  this.role = data;
+                  localStorage.setItem("role", this.role["name"]);
                 }
               );
+
+              this._authenticationService.getBusinessDetails().subscribe(
+                data => {
+                  this.businessDetails = data;
+                  localStorage.setItem("businessId", this.businessDetails["businessId"]);
+                  localStorage.setItem("cartId", this.businessDetails["cartId"]);
+                  localStorage.setItem("userId", this.businessDetails["userId"]);
+                }, error => {
+                  this._snackBar.open("ADMIN LOGIN", "OK");
+                  this.router.navigate(["logout"]);
+                }
+              )
               this.router.navigate([""])
             }, error => {
               this._snackBar.open("BAD CREDENTIAL", "OK");

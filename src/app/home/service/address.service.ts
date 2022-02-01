@@ -12,12 +12,10 @@ export class AddressService {
   constructor(private http: HttpClient) { }
 
   getAllAddresses(): Observable<any[]> {
-    localStorage.setItem('businessId', "1");
     return this.http.get<any[]>("http://localhost:8080/get-all-address/"+localStorage.getItem("businessId"));
   }
 
   addANewAddress(address: any) {
-    localStorage.setItem('businessId', "1");
     address["businessId"] = Number(localStorage.getItem("businessId"));
     this.http.post<any>(
       "http://localhost:8080/save-address",

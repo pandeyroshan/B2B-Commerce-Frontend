@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
+import { BehaviorSubject } from 'rxjs';
+
 import { cartItem } from '../model/cartItem'
 import { Observable } from 'rxjs';
 
@@ -10,10 +12,18 @@ import { Observable } from 'rxjs';
 })
 export class CartService {
 
-  constructor(private http: HttpClient) { }
+  private _messageSource = new BehaviorSubject<number>(0);
+  currentValue = this._messageSource.asObservable();
+
+  constructor(private http: HttpClient) {
+  }
+
+  changeCurrentValue(newValue: number) {
+    this._messageSource.next(newValue);
+  }
 
   addToCart(productId: number) {
-    localStorage.setItem('cartId', "1");
+    console.log(localStorage.getItem("jwttoken"));
     this.http.post<any>(
       "http://localhost:8080/add-to-cart",
       {
@@ -23,12 +33,10 @@ export class CartService {
   }
 
   getAllProduct(): Observable<cartItem[]> {
-    localStorage.setItem('userId', "1");
     return this.http.get<cartItem[]>("http://localhost:8080/cart-details/"+localStorage.getItem("userId"));
   }
 
   increaseProductQuantity(productId: number) {
-    localStorage.setItem("cartId", "1");
     this.http.post<any>(
       "http://localhost:8080/manage-quantity",
       {
@@ -40,7 +48,6 @@ export class CartService {
   }
 
   decreaseProductQuantity(productId: number) {
-    localStorage.setItem("cartId", "1");
     this.http.post<any>(
       "http://localhost:8080/manage-quantity",
       {
@@ -52,7 +59,6 @@ export class CartService {
   }
 
   deleteFromCart(productId: number) {
-    localStorage.setItem("cartId", "1");
     this.http.post<any>(
       "http://localhost:8080/remove-from-cart",
       {
@@ -60,5 +66,9 @@ export class CartService {
         "productId" : productId
       }
     ).subscribe(data => console.log(data))
+  }
+
+  getTotalNumberOfItemsInCart(): Observable<any>{
+    return this.http.get("http://localhost:8080/total-item-in-cart/"+localStorage.getItem("cartId"));
   }
 }

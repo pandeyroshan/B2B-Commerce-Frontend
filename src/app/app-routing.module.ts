@@ -11,6 +11,7 @@ import { OrderDetailsComponent } from './home/order-details/order-details.compon
 import { UpdateBusinessComponent } from './home/update-business/update-business.component';
 import { LogoutComponent } from './authentication/logout/logout.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
 
 const routes: Routes = [
   { path:"", component: HomepageComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path:"view-order", component: OrderDetailsComponent},
   { path:"update-business", component: UpdateBusinessComponent},
   { path:"login", component: LoginComponent},
+  { path:"register", component: RegisterComponent},
   { path:"logout", component: LogoutComponent},
 ];
 

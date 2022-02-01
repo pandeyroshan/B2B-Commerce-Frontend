@@ -1,1 +1,37 @@
-<p>register works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="column1" style="">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <img src="../../assets/login.svg" style="width: 100%;">
+        </div>
+        <div class="column2">
+            <br>
+            <h3 style="text-align: center;">REGISTER HERE</h3>
+            <div class="formDiv">
+                <form [formGroup]="registerForm" #ngForm="ngForm">
+                    <label for="businessRegistrationNumber">Business Registration Number</label>
+                    <input type="text" formControlName="businessRegistrationNumber" name="businessRegistrationNumber" placeholder="Enter your business registration number" required>
+
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" name="username" placeholder="Enter your username" required>
+                    
+                    <label for="email">Email Address</label>
+                    <input type="text" formControlName="email" name="email" placeholder="Enter your email address" required>
+        
+                    <label for="password">Password</label>
+                    <input type="text" formControlName="password" name="password" placeholder="Your Password" required>
+                  
+                    <button type="submit" (click)="register()">REGISTER</button>
+                    <div style="text-align: center;">
+                        <a href="login"><small>Login Here</small></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

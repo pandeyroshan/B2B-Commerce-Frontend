@@ -8,13 +8,6 @@ import { BusinessService } from '../service/business.service';
   styleUrls: ['./my-business.component.scss']
 })
 export class MyBusinessComponent implements OnInit {
-
-  business_name: string = "Azure Inc."
-  business_registration_number: string = "IN2021AI201"
-  business_status: boolean = true
-  business_email = "azure@inc.com"
-  customer_id = "7201"
-
   allAddress: any[];
   business: any;
 

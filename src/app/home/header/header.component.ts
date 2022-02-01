@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+
+import { CartService } from '../service/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +11,22 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  currentValue: number;
+
   isLoggedIn: Boolean = false;
 
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    private _cartService: CartService
+  ) { 
     if(localStorage.getItem("jwttoken")) {
       this.isLoggedIn = true;
     }
   }
 
   ngOnInit(): void {
+    this._cartService.getTotalNumberOfItemsInCart().subscribe(data => this.currentValue = data["totalNumberOfItemsInCart"])
+    this._cartService.currentValue.subscribe(data => this.currentValue = data);
   }
 
   logout() {

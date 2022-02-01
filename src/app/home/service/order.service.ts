@@ -12,7 +12,6 @@ export class OrderService {
   ) { }
 
   getMyOrders(): Observable<any[]> {
-    localStorage.setItem('businessId', "1");
     return this.http.post<any[]>(
       "http://localhost:8080/my-orders",
       {
