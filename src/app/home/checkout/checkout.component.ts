@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { AddressService } from '../service/address.service';
+
+import { CheckoutService } from "../service/checkout.service";
 
 @Component({
   selector: 'app-checkout',
@@ -17,12 +21,23 @@ export class CheckoutComponent implements OnInit {
     {id: 3, addressLine1: "Shyam Nagar", addressLine2: "Near Mandi", addressLine3: "Dharamshala", city: "Dharamshala", country: "India", pincode: "870931", contactPersonName:"Kishan Pandey", contactPersonPhoneNumber: "7903820334"},
   ]
 
-  deliveryAddress: any;
+  allAvailableAddress: any[];
 
-  constructor(private _snackBar: MatSnackBar) { }
+  deliveryAddress: any = null;
+
+  constructor(
+    private _snackBar: MatSnackBar,
+    private _checkoutService: CheckoutService,
+    private _addressService: AddressService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
-
+    this._addressService.getAllAddresses().subscribe(
+      data => {
+        this.allAvailableAddress = data;
+      }
+    );
   }
 
   selectAddressForDelivery(id: number) {
@@ -31,12 +46,10 @@ export class CheckoutComponent implements OnInit {
     this._snackBar.open("Your package will be delivered", "OK");
   }
 
-  confirmOrder() {
-    
-  }
-  
-  deleteAddress(id: number) {
-    this.allAddress = this.allAddress.filter(address => address.id != id);
+  placeOrder() {
+    localStorage.setItem("cartId", "1");
+    this._checkoutService.placeOrder(Number(localStorage.getItem("cartId")), this.deliveryAddress.id);
+    this.router.navigate(["/order-confirmed"]);
   }
 
 }

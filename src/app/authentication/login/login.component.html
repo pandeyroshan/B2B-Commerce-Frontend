@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="column1" style="">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <img src="../../assets/login.svg" style="width: 100%;">
+        </div>
+        <div class="column2">
+            <br><br><br>
+            <h3 style="text-align: center;">LOGIN HERE</h3>
+            <div class="formDiv">
+                <form [formGroup]="loginForm" #ngForm="ngForm">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" name="username" placeholder="Enter your username" required>
+        
+                    <label for="password">Password</label>
+                    <input type="text" formControlName="password" name="password" placeholder="Enter Password" required>
+                  
+                    <button type="submit" (click)="login()">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

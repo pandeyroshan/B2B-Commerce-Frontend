@@ -48,12 +48,23 @@
         <tr>
             <td colspan="4" style="text-align: right; font-weight: bold;">Grand Total: {{totalCartValue}} INR</td>
             <td colspan="1">
-                <a href="/checkout" mat-flat-button color="primary">
-                    Checkout
-                    <mat-icon>
-                        shopping_cart_checkout
-                    </mat-icon>
-                </a>
+                <ng-template [ngIf]="allCartItems.length == 0">
+                    <a disabled="true" href="/checkout" mat-flat-button color="primary">
+                        Checkout
+                        <mat-icon>
+                            shopping_cart_checkout
+                        </mat-icon>
+                    </a>
+                </ng-template>
+                
+                <ng-template [ngIf]="allCartItems.length != 0">
+                    <a disabled="false" href="/checkout" mat-flat-button color="primary">
+                        Checkout
+                        <mat-icon>
+                            shopping_cart_checkout
+                        </mat-icon>
+                    </a>
+                </ng-template>
             </td>
         </tr>
     </table>

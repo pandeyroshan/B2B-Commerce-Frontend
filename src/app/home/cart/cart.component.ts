@@ -13,13 +13,6 @@ import {CartService} from '../service/cart.service';
 export class CartComponent implements OnInit {
   
   allCartItems: any[];
-
-  cartItems = [
-    { id: 1, name: 'A', price: 10, quantity: 2, total_price: 20},
-    { id: 2, name: 'B', price: 10, quantity: 1, total_price: 10},
-    { id: 3, name: 'C', price: 10, quantity: 3, total_price: 30},
-    { id: 4, name: 'D', price: 10, quantity: 5, total_price: 50}
-  ];
   
   totalCartValue: number = 0;
 
@@ -42,6 +35,8 @@ export class CartComponent implements OnInit {
     let cartItemIndex = this.allCartItems.findIndex((cartItem => cartItem.id == id));
     this.totalCartValue -= this.allCartItems[cartItemIndex].product.price * this.allCartItems[cartItemIndex].totalQuantity;
     let itemName = this.allCartItems[cartItemIndex].product.name;
+    
+    this._cartService.deleteFromCart(this.allCartItems[cartItemIndex].product.id);
 
     this.allCartItems = this.allCartItems.filter(cartItem => cartItem.id != id);
     this._snackBar.open(itemName+" removed from cart ", "OK");
@@ -52,6 +47,7 @@ export class CartComponent implements OnInit {
     this.allCartItems[cartItemIndex].totalQuantity+=1;
     this.totalCartValue += this.allCartItems[cartItemIndex].product.price;
     this._snackBar.open("Quantity increased for that item", "OK");
+    this._cartService.increaseProductQuantity(this.allCartItems[cartItemIndex].product.id)
   }
 
   decreaseQuantity(id: number) {
@@ -59,6 +55,7 @@ export class CartComponent implements OnInit {
     this.allCartItems[cartItemIndex].totalQuantity-=1;
     this.totalCartValue -= this.allCartItems[cartItemIndex].product.price;
     this._snackBar.open("Quantity decreased for that item", "OK");
+    this._cartService.decreaseProductQuantity(this.allCartItems[cartItemIndex].product.id)
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { OrderService } from '../service/order.service';
 
 @Component({
   selector: 'app-order-details',
@@ -9,58 +10,28 @@ import { ActivatedRoute } from '@angular/router';
 export class OrderDetailsComponent implements OnInit {
 
   orderId: number;
+  orderDetails: any;
+  purchaseDetails: any[];
+  deliveryAddress: any;
 
-  order_details = {
-    "id" : 1,
-    "status" : "PLACED",
-    "timestamp" : "27-01-2022",
-    "total_cost" : 60,
-    "purchase_details" : [
-      {
-        "product" : {
-          "id" : 1,
-          "name" : "Blue Pen",
-          "price" : 10
-        },
-        "quantity" : 1,
-        "cost" : 10
-      },
-      {
-        "product" : {
-          "id" : 2,
-          "name" : "Black Pen",
-          "price" : 10
-        },
-        "quantity" : 2,
-        "cost" : 20
-      },
-      {
-        "product" : {
-          "id" : 3,
-          "name" : "Red Pen",
-          "price" : 10
-        },
-        "quantity" : 2,
-        "cost" : 20
-      },
-      {
-        "product" : {
-          "id" : 4,
-          "name" : "Gel Pen",
-          "price" : 10
-        },
-        "quantity" : 1,
-        "cost" : 10
-      },
-    ]
-  }
-
-  constructor(private route: ActivatedRoute) {
-    this.route.queryParams.subscribe((params: any) => {
-      console.log(params.id);
+  constructor(
+    private route: ActivatedRoute,
+    private _orderService: OrderService
+    ) {
+      this.route.queryParams.subscribe((params: any) => {
       this.orderId = params["order-id"];
-      console.log("Hello");
-      console.log(params);
+
+      this._orderService.getOrderDetailByOrderId(this.orderId).subscribe(
+        data => {
+          this.orderDetails = data
+        }
+      );
+
+      this._orderService.getPurchaseDetails(this.orderId).subscribe(
+        data => {
+          this.purchaseDetails = data
+        }
+      );
     })
   }
 

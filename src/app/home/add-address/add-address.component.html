@@ -5,10 +5,10 @@
     <div class="formDiv">
         <form [formGroup]="addressForm" #ngForm="ngForm">
             <label for="contactPersonName">Contact Person Name</label>
-            <input type="text" formControlName="contactPersonName" name="contactPersonName" placeholder="Contact person name" required>
+            <input type="text" formControlName="contactPerson" name="contactPerson" placeholder="Contact person name" required>
 
             <label for="contactPersonPhoneNumber">Contact Person phone number</label>
-            <input type="text" formControlName="contactPersonContactNumber" name="contactPersonContactNumber" placeholder="Contact person phone number" required>
+            <input type="text" formControlName="contactPersonPhoneNumber" name="contactPersonPhoneNumber" placeholder="Contact person phone number" required>
 
             <label for="addressLine1">Address Line 1</label>
             <input type="text" formControlName="addressLine1" name="addressLine1" placeholder="House No" required>
@@ -28,7 +28,7 @@
             <label for="pincode">PINCODE</label>
             <input type="text" formControlName="pincode" name="pincode" placeholder="Ex - 486450">
           
-            <button type="submit" value="Save Address" (click)="saveForm()">Save Address</button>
+            <button type="submit" value="Save Address" (click)="addANewAddress()">Save Address</button>
         </form>
     </div>
 </div>

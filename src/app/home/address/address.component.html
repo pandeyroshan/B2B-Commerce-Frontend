@@ -2,4 +2,7 @@
     <p style="font-weight: bold;">{{address.contactPersonName}} - {{address.contactPersonPhoneNumber}}</p>
     <p>{{address.addressLine1}}, {{address.addressLine2}}, {{address.addressLine3}}</p>
     <p>{{address.city}}, {{address.country}} - {{address.pincode}}</p>
+    <button mat-icon-button (click)="deleteAddress(address.id)">
+        <mat-icon>delete</mat-icon>
+    </button>
 </div>

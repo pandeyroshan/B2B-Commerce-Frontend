@@ -1,5 +1,10 @@
 <mat-card>
-    <img mat-card-image src="{{product.imageLink}}">
+    <ng-template [ngIf]="product.active">
+        <img mat-card-image src="{{product.imageLink}}">
+    </ng-template>
+    <ng-template [ngIf]="!product.active">
+        <img mat-card-image src="{{product.imageLink}}" style="filter: grayscale(100%);">
+    </ng-template>
 
     <p>
         <ng-template [ngIf]="product.active">

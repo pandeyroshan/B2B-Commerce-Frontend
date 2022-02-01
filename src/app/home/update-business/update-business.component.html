@@ -1,0 +1,14 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3>Update Business Informations</h3>
+
+    <div class="formDiv">
+        <form [formGroup]="businessInformation" #ngForm="ngForm">
+            <label for="businessName">Business Name</label>
+            <input type="text" formControlName="businessName" name="businessName" placeholder="Business Name" required>
+          
+            <button type="submit" value="Save Address" (click)="saveBusinessInformation()">Update Information</button>
+        </form>
+    </div>
+</div>

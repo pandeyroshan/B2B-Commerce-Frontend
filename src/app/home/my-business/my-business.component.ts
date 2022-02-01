@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressService } from '../service/address.service';
+import { BusinessService } from '../service/business.service';
 
 @Component({
   selector: 'app-my-business',
@@ -10,17 +12,26 @@ export class MyBusinessComponent implements OnInit {
   business_name: string = "Azure Inc."
   business_registration_number: string = "IN2021AI201"
   business_status: boolean = true
+  business_email = "azure@inc.com"
   customer_id = "7201"
 
-  allAddress = [
-    {id: 1, addressLine1: "Village - Naubasta", addressLine2: "POST - JP Nagar", addressLine3: "Rewa", city: "Rewa", country: "India", pincode: "486450", contactPersonName:"Roshan Pandey", contactPersonPhoneNumber: "9752315423"},
-    {id: 2, addressLine1: "Chitra Nagar", addressLine2: "Vijaynagar", addressLine3: "Indore", city: "Indore", country: "India", pincode: "486458", contactPersonName:"Monika Pandey", contactPersonPhoneNumber: "7898762560"},
-    {id: 3, addressLine1: "Shyam Nagar", addressLine2: "Near Mandi", addressLine3: "Dharamshala", city: "Dharamshala", country: "India", pincode: "870931", contactPersonName:"Kishan Pandey", contactPersonPhoneNumber: "7903820334"},
-  ]
+  allAddress: any[];
+  business: any;
 
-  constructor() { }
+  constructor(
+    private _addressService: AddressService,
+    private _businessService: BusinessService
+  ) { }
 
   ngOnInit(): void {
+    this._addressService.getAllAddresses().subscribe(
+      data => this.allAddress = data
+    );
+    
+    this._businessService.getMyBusiness().subscribe(
+      data => this.business = data
+    );
+
   }
 
   deleteAddress(id: number) {

@@ -1,21 +1,23 @@
 <app-header></app-header>
 <br>
 <div class="container">
-    <h3>Order Details - {{orderId}}</h3>
+    <h3 style="margin-bottom: 0%;">Order Number - {{orderDetails.id}}</h3>
     <mat-divider></mat-divider>
 
     <div class="row">
 
-        <div class="column1">
-            <br><br>
-            <img src="../../assets/purchase-details.svg" style="width: 100%;">
+        <div class="column1" style="text-align: center;">
+            <br>
+            <img src="../../assets/purchase-details.svg" style="width: 100%;"><br><br><br>
+            <h4>Status - {{orderDetails.orderStatus}}</h4>
         </div>
 
         <div class="column2">
             <div>
-                <span>Total Cost: {{order_details.total_cost}} Rs.</span><br>
-                <span>Date: {{order_details.timestamp}}</span>
+                <span style="font-weight: bold;">Grand Total: {{orderDetails.totalCost}} Rs.</span><br>
+                <span>Date: {{orderDetails.timestamp | date:"dd MMM yy hh:mm a" }}</span>
             </div>
+
             <br>
             <table id="purchaseDetails">
                 <tr>
@@ -24,11 +26,11 @@
                     <th>Quantity</th>
                     <th>Total Cost</th>
                 </tr>
-                <tr *ngFor="let purchase_detail of order_details.purchase_details">
-                    <td>{{purchase_detail.product.name}}</td>
-                    <td>{{purchase_detail.product.price}} Rs.</td>
-                    <td>x {{purchase_detail.quantity}}</td>
-                    <td>{{purchase_detail.cost}} Rs.</td>
+                <tr *ngFor="let purchaseDetail of purchaseDetails">
+                    <td>{{purchaseDetail.product.name}}</td>
+                    <td>{{purchaseDetail.product.price}} Rs.</td>
+                    <td>x {{purchaseDetail.quantityOrdered}}</td>
+                    <td>{{purchaseDetail.totalCost}} Rs.</td>
                 </tr>
             </table>
             <br>
@@ -37,6 +39,9 @@
                     <mat-icon>chevron_left</mat-icon>
                 </a>
             </div>
+
+            <h4>Delivery Address - </h4>
+            <app-address [address]="orderDetails.address"></app-address>
         </div>
     </div>
 </div>

@@ -24,9 +24,11 @@ import { MatTableModule } from '@angular/material/table';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdateBusinessComponent } from './update-business/update-business.component';
+
 
 @NgModule({
-  declarations: [HomepageComponent, CartComponent, CheckoutComponent, ProductComponent, ProfileComponent, MyOrdersComponent, HeaderComponent, MyBusinessComponent, AddressComponent, AddAddressComponent, OrderConfirmedComponent, OrderDetailsComponent],
+  declarations: [HomepageComponent, CartComponent, CheckoutComponent, ProductComponent, ProfileComponent, MyOrdersComponent, HeaderComponent, MyBusinessComponent, AddressComponent, AddAddressComponent, OrderConfirmedComponent, OrderDetailsComponent, UpdateBusinessComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -51,7 +53,6 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     MyOrdersComponent,
     MyBusinessComponent,
-    HeaderComponent,
     AddressComponent,
     AddAddressComponent,
     OrderConfirmedComponent,

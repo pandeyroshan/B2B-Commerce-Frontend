@@ -8,6 +8,9 @@ import { AddAddressComponent } from './home/add-address/add-address.component';
 import { CheckoutComponent } from './home/checkout/checkout.component';
 import { OrderConfirmedComponent } from './home/order-confirmed/order-confirmed.component';
 import { OrderDetailsComponent } from './home/order-details/order-details.component';
+import { UpdateBusinessComponent } from './home/update-business/update-business.component';
+import { LogoutComponent } from './authentication/logout/logout.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 const routes: Routes = [
   { path:"", component: HomepageComponent },
@@ -17,7 +20,10 @@ const routes: Routes = [
   { path:"add-address", component: AddAddressComponent },
   { path:"checkout", component: CheckoutComponent },
   { path:"order-confirmed", component: OrderConfirmedComponent },
-  { path:"view-order", component: OrderDetailsComponent}
+  { path:"view-order", component: OrderDetailsComponent},
+  { path:"update-business", component: UpdateBusinessComponent},
+  { path:"login", component: LoginComponent},
+  { path:"logout", component: LogoutComponent},
 ];
 
 @NgModule({
