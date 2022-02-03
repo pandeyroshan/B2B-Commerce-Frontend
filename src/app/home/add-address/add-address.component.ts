@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddressService } from '../service/address.service';
+import { ActivatedRoute } from '@angular/router';
 
 import { Router } from '@angular/router';
  
@@ -13,12 +14,19 @@ import { Router } from '@angular/router';
 })
 export class AddAddressComponent implements OnInit {
 
+  nextUrl: string;
+
   constructor(
     private formBuilder: FormBuilder, 
     private _snackBar: MatSnackBar,
     private _addressService: AddressService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { 
+    this.route.queryParams.subscribe((params: any) => {
+      this.nextUrl = params["next-page"];
+    });
+  }
 
   addressForm = this.formBuilder.group({
     contactPerson: [''],
@@ -34,11 +42,11 @@ export class AddAddressComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addANewAddress(){
+  addANewAddress() {
     this._addressService.addANewAddress(this.addressForm.value);
     this.addressForm.reset();
     this._snackBar.open("Address saved successfully", "OK");
-    this.router.navigate(["/my-business"]);
+    this.router.navigate(["/"+this.nextUrl]);
   }
 
 }

@@ -25,10 +25,11 @@ import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.compo
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateBusinessComponent } from './update-business/update-business.component';
+import { ShowAddressComponent } from './show-address/show-address.component';
 
 
 @NgModule({
-  declarations: [HomepageComponent, CartComponent, CheckoutComponent, ProductComponent, ProfileComponent, MyOrdersComponent, HeaderComponent, MyBusinessComponent, AddressComponent, AddAddressComponent, OrderConfirmedComponent, OrderDetailsComponent, UpdateBusinessComponent],
+  declarations: [HomepageComponent, CartComponent, CheckoutComponent, ProductComponent, ProfileComponent, MyOrdersComponent, HeaderComponent, MyBusinessComponent, AddressComponent, AddAddressComponent, OrderConfirmedComponent, OrderDetailsComponent, UpdateBusinessComponent, ShowAddressComponent],
   imports: [
     CommonModule,
     MatToolbarModule,

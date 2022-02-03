@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
                   this.router.navigate(["logout"]);
                 }
               )
+              console.log(localStorage);
               this.router.navigate([""])
             }, error => {
               this._snackBar.open("BAD CREDENTIAL", "OK");

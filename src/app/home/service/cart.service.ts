@@ -23,7 +23,7 @@ export class CartService {
   }
 
   addToCart(productId: number) {
-    console.log(localStorage.getItem("jwttoken"));
+    console.log(localStorage.getItem("cartId"));
     this.http.post<any>(
       "http://localhost:8080/add-to-cart",
       {
@@ -68,7 +68,7 @@ export class CartService {
     ).subscribe(data => console.log(data))
   }
 
-  getTotalNumberOfItemsInCart(): Observable<any>{
-    return this.http.get("http://localhost:8080/total-item-in-cart/"+localStorage.getItem("cartId"));
+  getTotalNumberOfItemsInCart(cartId: number): Observable<any>{
+    return this.http.get("http://localhost:8080/total-item-in-cart/"+cartId);
   }
 }

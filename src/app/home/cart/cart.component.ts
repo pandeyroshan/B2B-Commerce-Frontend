@@ -26,7 +26,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     console.log(localStorage);
     
-    this._cartService.getTotalNumberOfItemsInCart().subscribe(data => this.currentValue = data["totalNumberOfItemsInCart"])
+    this._cartService.getTotalNumberOfItemsInCart(Number(localStorage.getItem("cartId"))).subscribe(data => this.currentValue = data["totalNumberOfItemsInCart"])
     this._cartService.currentValue.subscribe(data => this.currentValue = data);
 
     this._cartService.getAllProduct().subscribe(data => {

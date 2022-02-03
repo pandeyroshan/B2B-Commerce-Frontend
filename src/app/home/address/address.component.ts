@@ -22,9 +22,9 @@ export class AddressComponent implements OnInit {
   }
 
   deleteAddress(id: number) {
-    this._addressService.deleteAddress(id);
-    this._snackBar.open("Deleted Address", "OK");
-    console.log("Address Deleted");
+    let isDeleted = this._addressService.deleteAddress(id);
+    
+    this._snackBar.open("Address deleted successfully", "OK");
     this.router.navigate(["my-business"]);
   }
 

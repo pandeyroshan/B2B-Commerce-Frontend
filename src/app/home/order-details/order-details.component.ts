@@ -32,7 +32,7 @@ export class OrderDetailsComponent implements OnInit {
           this.purchaseDetails = data
         }
       );
-    })
+    });
   }
 
   ngOnInit(): void {

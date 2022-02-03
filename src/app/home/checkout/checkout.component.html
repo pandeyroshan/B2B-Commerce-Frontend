@@ -13,13 +13,13 @@
     <br>
     <ng-template [ngIf]="selectedAddressId == -1">
         <h4>Click on a address-tile to select a delivery address</h4>
-        <a href="/add-address" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <a href="/add-address?next-page=checkout" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <span>Add a address </span><mat-icon>add</mat-icon>
         </a>
     </ng-template>
     <ng-template [ngIf]="selectedAddressId != -1">
         <h4>Your package will be delivered to below address</h4>
-        <app-address [address]="deliveryAddress"></app-address>
+        <app-show-address [address]="deliveryAddress"></app-show-address>
         <div style="text-align: right;">
             <a (click)="placeOrder()" mat-fab color="primary">
                 <mat-icon>chevron_right</mat-icon>

@@ -22,7 +22,7 @@ export class HomepageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._productService.getAllProduct().subscribe(data => {
+    this._productService.getAllProduct(Number(localStorage.getItem("userId"))).subscribe(data => {
       this.realProducts = data;
       console.log(data);
       }

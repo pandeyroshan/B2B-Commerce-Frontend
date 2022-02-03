@@ -42,12 +42,11 @@ export class CheckoutComponent implements OnInit {
 
   selectAddressForDelivery(id: number) {
     this.selectedAddressId = id;
-    this.deliveryAddress = this.allAddress.find(x=> x.id == this.selectedAddressId)
+    this.deliveryAddress = this.allAvailableAddress.find(x=> x.id == this.selectedAddressId)
     this._snackBar.open("Your package will be delivered", "OK");
   }
 
   placeOrder() {
-    localStorage.setItem("cartId", "1");
     this._checkoutService.placeOrder(Number(localStorage.getItem("cartId")), this.deliveryAddress.id);
     this.router.navigate(["/order-confirmed"]);
   }
