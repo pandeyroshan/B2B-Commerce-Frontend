@@ -1,1 +1,120 @@
-<p>dashboard works!</p>
+<app-header></app-header>
+<br>
+<div class="container">
+    <mat-grid-list cols="4" rowHeight="3:1" gutterSize="10px">
+        <mat-grid-tile>
+            <mat-grid-tile-header>
+                Total Sales
+            </mat-grid-tile-header>
+            <br><br>
+            {{adminTileInformation.totalSales}} INR
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-grid-tile-header>
+                All Business
+            </mat-grid-tile-header>
+            <br><br>
+            {{adminTileInformation.totalBusiness}} Business
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+            <mat-grid-tile-header>
+                Approved Business
+            </mat-grid-tile-header>
+            <br><br>
+            {{adminTileInformation.totalApprovedBusiness}} Approved
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+            <mat-grid-tile-header>
+                Total Products
+            </mat-grid-tile-header>
+            <br><br>
+            {{adminTileInformation.totalNumberOfProducts}} Products
+        </mat-grid-tile>
+    </mat-grid-list>
+    <br>
+
+    <div class="row">
+        <div class="column1" style="background-color:#FAF6FF;">
+            <h2 style="margin-bottom: 0%;">Orders</h2>
+            <mat-divider></mat-divider>
+            <br>
+            <table id="tabular-data"> 
+                <tr>
+                    <th>Order Id</th>
+                    <th>Placed At</th>
+                    <th>Total Cost</th>
+                    <th>Status</th>
+                    <th>View</th>
+                </tr>
+                <tr *ngFor="let order of allOrders">
+                    <td>{{order.id}}</td>
+                    <td>{{order.timestamp | date:"dd MMM yy hh:mm a" }}</td>
+                    <td>{{order.totalCost}}</td>
+                    <td>
+                        <ng-template [ngIf]="order.orderStatus == 'PLACED'">
+                            Placed
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.orderStatus == 'IN_TRANSIT'">
+                            On the way
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.orderStatus == 'CANCELLED'">
+                            Cancelled
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.orderStatus == 'DELIVERED'">
+                            Delivered
+                        </ng-template>
+                    </td>
+                    <td>
+                        <a href="/admin/edit-order?order-id={{order.id}}">
+                            <mat-icon>visibility</mat-icon>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <div style="text-align: right;">
+                <a href="admin/all-orders" mat-stroked-button color="primary">All orders</a>
+            </div>
+        </div>
+        <div class="column2" style="background-color:#FAF6FF;">
+            <h2 style="margin-bottom: 0%;">Products</h2> 
+            <mat-divider></mat-divider>
+            <br>
+            <table id="tabular-data"> 
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Stock Quantity</th>
+                    <th>Availability</th>
+                    <th>View</th>
+                </tr>
+                <tr *ngFor="let product of allProducts">
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}} INR</td>
+                    <td>{{product.inStockQuantity}} Units</td>
+                    <td>
+                        <ng-template [ngIf]="product.active">
+                            <mat-icon style="color: green;">check_circle</mat-icon>
+                        </ng-template>
+                        <ng-template [ngIf]="!product.active">
+                            <mat-icon style="color: red;">unpublished</mat-icon>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <mat-icon>visibility</mat-icon>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <div style="text-align: right;">
+                <a href="admin/all-products" mat-stroked-button color="primary">All Products</a>
+            </div>
+        </div>
+    </div>
+</div>

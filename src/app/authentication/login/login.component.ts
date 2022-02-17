@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem("userId", this.businessDetails["userId"]);
                 }, error => {
                   this._snackBar.open("ADMIN LOGIN", "OK");
-                  this.router.navigate(["logout"]);
+                  this.router.navigate(["admin"]);
                 }
               )
               console.log(localStorage);

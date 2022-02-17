@@ -12,6 +12,10 @@ import { UpdateBusinessComponent } from './home/update-business/update-business.
 import { LogoutComponent } from './authentication/logout/logout.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
+import { DashboardComponent } from './admin-dashboard/dashboard/dashboard.component';
+import { AllOrdersComponent } from './admin-dashboard/all-orders/all-orders.component';
+import { EditOrderComponent } from './admin-dashboard/edit-order/edit-order.component';
+import { AllProductsComponent } from './admin-dashboard/all-products/all-products.component';
 
 const routes: Routes = [
   { path:"", component: HomepageComponent },
@@ -21,11 +25,15 @@ const routes: Routes = [
   { path:"add-address", component: AddAddressComponent },
   { path:"checkout", component: CheckoutComponent },
   { path:"order-confirmed", component: OrderConfirmedComponent },
-  { path:"view-order", component: OrderDetailsComponent},
-  { path:"update-business", component: UpdateBusinessComponent},
-  { path:"login", component: LoginComponent},
-  { path:"register", component: RegisterComponent},
-  { path:"logout", component: LogoutComponent},
+  { path:"view-order", component: OrderDetailsComponent },
+  { path:"update-business", component: UpdateBusinessComponent },
+  { path:"login", component: LoginComponent },
+  { path:"register", component: RegisterComponent },
+  { path:"logout", component: LogoutComponent },
+  { path:"admin", component: DashboardComponent },
+  { path:"admin/all-orders", component: AllOrdersComponent },
+  { path:"admin/edit-order", component: EditOrderComponent },
+  { path:"admin/all-products", component: AllProductsComponent },
 ];
 
 @NgModule({

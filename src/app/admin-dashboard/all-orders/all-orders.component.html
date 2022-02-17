@@ -1,1 +1,52 @@
-<p>all-orders works!</p>
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3 style="margin-bottom: 0%;">All Orders</h3>
+    <mat-divider></mat-divider>
+    <br>
+    <div class="row">
+        <div class="">
+            <table id="myOrdersTable">
+                <tr>
+                    <th>Order Id</th>
+                    <th>Ordered By</th>
+                    <th>City</th>
+                    <th>Placed At</th>
+                    <th>Total Cost</th>
+                    <th>Status</th>
+                    <th>View / Update status</th>
+                </tr>
+                <tr *ngFor="let order of allOrders">
+                    <td>Order {{order.id}}</td>
+                    <td>{{order.orderedBy.businessName}}</td>
+                    <td>{{order.address.city}} - {{order.address.pincode}}</td>
+                    <td>{{order.timestamp | date:"dd MMM yy hh:mm a" }}</td>
+                    <td>{{order.totalCost}} INR</td>
+                    <td>
+                        <ng-template [ngIf]="order.orderStatus == 'PLACED'">
+                            Placed
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.orderStatus == 'IN_TRANSIT'">
+                            On the way
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.orderStatus == 'CANCELLED'">
+                            Cancelled
+                        </ng-template>
+
+                        <ng-template [ngIf]="order.orderStatus == 'DELIVERED'">
+                            Delivered
+                        </ng-template>
+                    </td>
+                    <td>
+                        <a href="/admin/edit-order?order-id={{order.id}}" mat-icon-button color="primary">
+                            <mat-icon>visibility</mat-icon>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

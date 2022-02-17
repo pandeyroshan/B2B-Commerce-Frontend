@@ -57,7 +57,8 @@ import { ShowAddressComponent } from './show-address/show-address.component';
     AddressComponent,
     AddAddressComponent,
     OrderConfirmedComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    ShowAddressComponent,
   ]
 })
 export class HomeModule { }

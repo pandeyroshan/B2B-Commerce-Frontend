@@ -1,0 +1,74 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3 style="margin-bottom: 0%;">Order Number - {{orderDetails.id}}</h3>
+    <mat-divider></mat-divider>
+
+    <div class="row">
+
+        <div class="column1" style="text-align: center;">
+            <br>
+            <img src="../../assets/purchase-details.svg" style="width: 100%;"><br><br><br>
+        </div>
+
+        <div class="column2">
+            <div style="text-align: right;">
+                <span style="font-weight: bold;">
+                    Update Status - 
+                </span>
+                <button class="" mat-stroked-button [matMenuTriggerFor]="menu">
+                    <ng-template [ngIf]="orderDetails.orderStatus == 'PLACED'">
+                        <span style="color: black;">Placed</span>
+                    </ng-template>
+
+                    <ng-template [ngIf]="orderDetails.orderStatus == 'IN_TRANSIT'">
+                        <span style="color: black;">On the way</span>
+                    </ng-template>
+
+                    <ng-template [ngIf]="orderDetails.orderStatus == 'CANCELLED'">
+                        <span style="color: red;">Cancelled</span>
+                    </ng-template>
+
+                    <ng-template [ngIf]="orderDetails.orderStatus == 'DELIVERED'">
+                        <span style="color: green;">Delivered</span>
+                    </ng-template>
+                </button>
+                    <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="changeOrderStatus('PLACED', 'Placed')">Placed</button>
+                    <button mat-menu-item (click)="changeOrderStatus('IN_TRANSIT', 'On the way')">On the way</button>
+                    <button mat-menu-item (click)="changeOrderStatus('DELIVERED', 'Delivered')">Delivered</button>
+                </mat-menu>
+            </div>
+
+            <div>
+                <span style="font-weight: bold;">Grand Total: {{orderDetails.totalCost}} Rs.</span><br>
+                <span>Date: {{orderDetails.timestamp | date:"dd MMM yy hh:mm a" }}</span>
+            </div>
+
+            <br>
+            <table id="purchaseDetails">
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Cost</th>
+                </tr>
+                <tr *ngFor="let purchaseDetail of purchaseDetails">
+                    <td>{{purchaseDetail.product.name}}</td>
+                    <td>{{purchaseDetail.product.price}} Rs.</td>
+                    <td>x {{purchaseDetail.quantityOrdered}}</td>
+                    <td>{{purchaseDetail.totalCost}} Rs.</td>
+                </tr>
+            </table>
+            <br>
+            <div style="text-align: right;">
+                <a href="/admin/all-orders" mat-fab color="primary">
+                    <mat-icon>chevron_left</mat-icon>
+                </a>
+            </div>
+
+            <h4>Delivery Address - </h4>
+            <app-show-address [address]="orderDetails.address"></app-show-address>
+        </div>
+    </div>
+</div>

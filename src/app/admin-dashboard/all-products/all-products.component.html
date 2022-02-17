@@ -1,1 +1,67 @@
-<p>all-products works!</p>
+<app-header></app-header>
+<br>
+<div class="container">
+    <h3 style="margin-bottom: 0%;">All Products</h3>
+    <mat-divider></mat-divider>
+    <br>
+    <div style="text-align: right;">
+        <button mat-stroked-button color="primary">
+            Add Product
+        </button>
+    </div>
+    <br>
+    <div class="row">
+        <div class="">
+            <table id="productTable">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Stock Units</th>
+                    <th>Status</th>
+                    <th>Change Status</th>
+                    <th>Update</th>
+                </tr>
+                <tr *ngFor="let product of allProducts">
+                    
+                    <ng-template [ngIf]="!product.active">
+                        <td>{{product.name}}</td>
+                    </ng-template>
+                    
+                    <ng-template [ngIf]="product.active">
+                        <td>{{product.name}}</td>
+                    </ng-template>
+
+                    <td>{{product.price}}</td>
+                    <td>{{product.inStockQuantity}}</td>
+                    <td>
+                        <ng-template [ngIf]="product.active">
+                            <mat-icon style="color: green;">check_circle</mat-icon>
+                        </ng-template>
+
+                        <ng-template [ngIf]="!product.active">
+                            <mat-icon style="color: red;">unpublished</mat-icon>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-template [ngIf]="product.active">
+                            <button mat-icon-button color="primary" (click)="toggleProductActiveStatus(product.id, !product.active)">
+                                <mat-icon>visibility_off</mat-icon>
+                            </button>
+                        </ng-template>
+                        <ng-template [ngIf]="!product.active">
+                            <button href="" mat-icon-button color="primary" (click)="toggleProductActiveStatus(product.id, !product.active)">
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <a href="" mat-icon-button color="primary">
+                            <mat-icon>edit</mat-icon>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
