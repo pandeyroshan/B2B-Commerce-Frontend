@@ -24,11 +24,13 @@ export class AddProductComponent implements OnInit {
     name : ['',Validators.required],
     price: ['',Validators.required],
     imageLink: [''],
-    active: ['']
+    active: [''],
+    id: [''],
   });
 
   if(this.editData){
     this.actionBtn = "Update";
+    this.addProductForm.controls['id'].setValue(this.editData.id);
     this.addProductForm.controls['inStockQuantity'].setValue(this.editData.inStockQuantity);
     this.addProductForm.controls['imageLink'].setValue(this.editData.image_link);
     this.addProductForm.controls['name'].setValue(this.editData.name);
