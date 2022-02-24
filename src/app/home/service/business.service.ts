@@ -22,7 +22,22 @@ export class BusinessService {
       }
     ).subscribe(data => console.log(data))
   }
+  getAllBusiness(): Observable<any[]> {
+    return this.http.get<any[]>("http://localhost:8080/all-business")
+  }
+  approveBusiness(businessId:number): Observable<any[]> {
+    return this.http.get<any[]>("http://localhost:8080/approve-business/"+businessId)
+  }
+  rejectBusiness(businessId:number): Observable<any[]> {
+    return this.http.get<any[]>("http://localhost:8080/reject-business/"+businessId);
+  }
 
+  toggleBusinessActiveStatus(businessId: number, newStatus: boolean) : Observable<any> {
+    return this.http.post<any>("http://localhost:8080/change-visibilty", {
+      "businessId" : businessId,
+      "status" : newStatus
+    });
+  }
   getBusinessDetails(): Observable<any> {
     return this.http.post<any>(
       "http://localhost:8080/get-detail-from-token",
