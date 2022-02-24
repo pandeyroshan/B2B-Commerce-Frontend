@@ -26,9 +26,11 @@ content: "";
 #productTable tr:hover {background-color: #ddd;}
 
 #productTable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px;
   text-align: center;
+  align-content: center;
   background-color: #B98AFE;
   color: white;
+  font-weight: 600;
 }
+

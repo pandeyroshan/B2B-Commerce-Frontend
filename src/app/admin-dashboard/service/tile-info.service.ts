@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class TileInfoService {
 
+  private baseUrl = "localhost:8080";
+
   constructor(private http: HttpClient) { }
 
   getTileInformation(): Observable<any> {

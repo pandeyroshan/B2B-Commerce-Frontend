@@ -34,6 +34,22 @@
             "scripts": []
           },
           "configurations": {
+            "qualityAnalyst": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ]
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -70,6 +86,12 @@
             "browserTarget": "b2bcommerce:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "b2bcommerce:build:dev"
+            },
+            "qualityAnalyst": {
+              "browserTarget": "b2bcommerce:build:qa"
+            },
             "production": {
               "browserTarget": "b2bcommerce:build:production"
             }

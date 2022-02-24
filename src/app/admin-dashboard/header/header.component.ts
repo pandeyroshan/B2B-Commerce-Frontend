@@ -16,4 +16,12 @@ export class HeaderComponent implements OnInit {
   redirectToAdminPanel(){
     this._router.navigate(["admin"]);
   }
+
+  logout() {
+    console.log("LOGGING OUT");
+    console.log("JWT TOKEN: "+ localStorage.getItem("jwttoken"));
+    localStorage.clear();
+    console.log("JWT TOKEN: "+ localStorage.getItem("jwttoken"));
+    this._router.navigate(["\logout"]);
+  }
 }

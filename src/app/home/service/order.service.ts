@@ -13,7 +13,7 @@ export class OrderService {
 
   getMyOrders(): Observable<any[]> {
     return this.http.post<any[]>(
-      "http://localhost:8080/my-orders",
+      "http://localhost:8081/my-orders",
       {
         "businessId" : Number(localStorage.getItem("businessId"))
       }

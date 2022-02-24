@@ -1,67 +1,94 @@
 <app-header></app-header>
-<br>
+<br />
 <div class="container">
-    <h3 style="margin-bottom: 0%;">All Products</h3>
+    <h3 style="margin-bottom: 0%">All Products</h3>
     <mat-divider></mat-divider>
-    <br>
-    <div style="text-align: right;">
-        <button mat-stroked-button color="primary">
+    <br />
+    <div style="text-align: right">
+        <button mat-stroked-button color="primary" (click)="openDialog()">
             Add Product
         </button>
     </div>
-    <br>
-    <div class="row">
-        <div class="">
-            <table id="productTable">
-                <tr>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Stock Units</th>
-                    <th>Status</th>
-                    <th>Change Status</th>
-                    <th>Update</th>
-                </tr>
-                <tr *ngFor="let product of allProducts">
-                    
-                    <ng-template [ngIf]="!product.active">
-                        <td>{{product.name}}</td>
-                    </ng-template>
-                    
-                    <ng-template [ngIf]="product.active">
-                        <td>{{product.name}}</td>
-                    </ng-template>
+</div>
+<div class="container">
+    <div style="margin-top: 10px">
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. iPhone" #input />
+        </mat-form-field>
 
-                    <td>{{product.price}}</td>
-                    <td>{{product.inStockQuantity}}</td>
-                    <td>
-                        <ng-template [ngIf]="product.active">
+        <div>
+            <table id="productTable" mat-table [dataSource]="dataSource" matSort>
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Product Name
+                    </th>
+                    <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+                </ng-container>
+
+                <!-- Price Column -->
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+                    <td mat-cell *matCellDef="let row">{{ row.price }}</td>
+                </ng-container>
+
+                <!-- Quantity Column -->
+                <ng-container matColumnDef="inStockQuantity">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock Unit</th>
+                    <td mat-cell *matCellDef="let row">{{ row.inStockQuantity }}</td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                    <td mat-cell *matCellDef="let row">
+                        <ng-template [ngIf]="row.active==true">
                             <mat-icon style="color: green;">check_circle</mat-icon>
                         </ng-template>
-
-                        <ng-template [ngIf]="!product.active">
+                        <ng-template [ngIf]="row.active==false">
                             <mat-icon style="color: red;">unpublished</mat-icon>
                         </ng-template>
                     </td>
-                    <td>
-                        <ng-template [ngIf]="product.active">
-                            <button mat-icon-button color="primary" (click)="toggleProductActiveStatus(product.id, !product.active)">
-                                <mat-icon>visibility_off</mat-icon>
-                            </button>
-                        </ng-template>
-                        <ng-template [ngIf]="!product.active">
-                            <button href="" mat-icon-button color="primary" (click)="toggleProductActiveStatus(product.id, !product.active)">
-                                <mat-icon>visibility</mat-icon>
-                            </button>
-                        </ng-template>
+                </ng-container>
+
+                <!-- ChangeStatus Column -->
+                <ng-container matColumnDef="changeStatus">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Change Status</th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-mini-fab color="primary" (click)="toggleProductActiveStatus(row)">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
                     </td>
-                    <td>
-                        <a href="" mat-icon-button color="primary">
+                </ng-container>
+
+                <!-- Action Column -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Update/Delete
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <a mat-mini-fab color="primary" (click)="editProduct(row)">
                             <mat-icon>edit</mat-icon>
                         </a>
+                        <a style="margin-left: 8px" mat-mini-fab color="warn" (click)="deleteProduct(row.id)">
+                            <mat-icon>delete</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">
+                        No data matching the filter "{{ input.value }}"
                     </td>
                 </tr>
             </table>
-        </div>
 
+            <mat-paginator [pageSizeOptions]="[5, 10, 25]" aria-label="Select page of users"></mat-paginator>
+        </div>
     </div>
 </div>

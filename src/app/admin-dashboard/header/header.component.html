@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <span (click)="redirectToAdminPanel()" style="cursor: pointer;">Admin Dashboard</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>logout</mat-icon>
-    </button>
+    <a mat-icon-button style="margin-right: 1%;" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+    </a>
 </mat-toolbar>
