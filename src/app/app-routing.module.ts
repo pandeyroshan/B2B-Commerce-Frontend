@@ -16,6 +16,7 @@ import { DashboardComponent } from './admin-dashboard/dashboard/dashboard.compon
 import { AllOrdersComponent } from './admin-dashboard/all-orders/all-orders.component';
 import { EditOrderComponent } from './admin-dashboard/edit-order/edit-order.component';
 import { AllProductsComponent } from './admin-dashboard/all-products/all-products.component';
+import { AllBusinessComponent } from './admin-dashboard/all-business/all-business.component';
 
 const routes: Routes = [
   { path:"", component: HomepageComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path:"admin/all-orders", component: AllOrdersComponent },
   { path:"admin/edit-order", component: EditOrderComponent },
   { path:"admin/all-products", component: AllProductsComponent },
+  { path:"admin/all-business", component: AllBusinessComponent },
 ];
 
 @NgModule({

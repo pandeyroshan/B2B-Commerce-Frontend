@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/home/service/order.service';
 import { OrderServiceService } from '../service/order-service.service';
 import { ProductService } from '../service/product.service';
 import { TileInfoService } from '../service/tile-info.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +20,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private _orderService: OrderServiceService,
     private _productService: ProductService,
-    private _tileInfoService: TileInfoService
+    private _tileInfoService: TileInfoService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +36,10 @@ export class DashboardComponent implements OnInit {
     this._tileInfoService.getTileInformation().subscribe(
       data => this.adminTileInformation = data
     )
+  }
+
+  openAllBusiness() {
+    this.router.navigate(["admin/all-business"]);
   }
 
 }
